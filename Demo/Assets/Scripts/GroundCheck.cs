@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class GroundCheck : MonoBehaviour
 {
-
+    Animator Animator;
     public bool Grounded = false;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Animator = GetComponentInParent<Animator>();
     }
 
     // Update is called once per frame
@@ -26,6 +26,7 @@ public class GroundCheck : MonoBehaviour
         if(col.CompareTag("Ground"))
         {
             Grounded = true;
+            Animator.SetBool("Jump", false);
         }
     }
     //Når du så trykker mellemrum skal du exit din trigger.
@@ -34,6 +35,7 @@ public class GroundCheck : MonoBehaviour
         if (col.CompareTag("Ground"))
         {
             Grounded = false;
+            Animator.SetBool("Jump", true);
         }
     }
     //Når du lander på jorden skal din trigger blive på.
